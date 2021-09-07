@@ -1,0 +1,69 @@
+{
+  "name": "kril-cm-api",
+  "author": "Alberto Sánchez",
+  "description": "A typescript library for the Campaign Monitor API",
+  "module": "dist/kril-cm-api-1.esm.js",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^5.0.3",
+    "husky": "^7.0.2",
+    "size-limit": "^5.0.3",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "size-limit": [
+    {
+      "path": "dist/kril-cm-api-1.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/kril-cm-api-1.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krilbert/kril-cm-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/krilbert/kril-cm-api/issues"
+  },
+  "homepage": "https://github.com/krilbert/kril-cm-api#readme",
+  "dependencies": {
+    "node-fetch": "^3.0.0"
+  },
+  "keywords": [
+    "Campaign Monitor",
+    "API",
+    "createsend",
+    "campaign-monitor",
+    "email",
+    ""
+  ]
+}
