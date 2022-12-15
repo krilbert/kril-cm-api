@@ -32,7 +32,8 @@ const client = (method: Method) => {
     try {
       const url = `${apiUrl}${path}?${queryString}`
       const response = await fetch(url, config)
-      const data = await response.json()
+      const text = await response.text()
+      const data = text ? JSON.parse(text) : {}
       if (response.ok) {
         return Promise.resolve(data as T)
       } else {

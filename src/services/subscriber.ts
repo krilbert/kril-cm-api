@@ -1,5 +1,4 @@
 import { deleteRequest, getRequest, postRequest, putRequest } from '../api-client'
-import { EmailAddress } from '../types/shared.types'
 import {
   GetSubscriberDetailsDetails,
   ImportSubscriberDetails,
@@ -16,7 +15,7 @@ interface SubscriberInterface {
   importSubscribers(listId: string, details: ImportSubscriberDetails): Promise<SubscribersImported>
   getSubscriberDetails(listId: string, email: string, details?: GetSubscriberDetailsDetails): Promise<SubscriberDetails>
   getSubscriberHistory(listId: string, email: string): Promise<SubscriberHistory>
-  unsubscribeSubscriber(listId: string): Promise<EmailAddress>
+  unsubscribeSubscriber(listId: string, email: string): Promise<string>
   deleteSubscriber(listId: string, email: string): Promise<void>
 }
 
@@ -49,8 +48,12 @@ class SubscriberService extends Base implements SubscriberInterface {
     })
     return data
   }
-  unsubscribeSubscriber = async (listId: string) => {
-    const data = await postRequest<EmailAddress>(this.authHeader, `/subscribers/${listId}/unsubscribe.json`)
+  unsubscribeSubscriber = async (listId: string, email: string) => {
+    const data = await postRequest<string>(this.authHeader, `/subscribers/${listId}/unsubscribe.json`, {
+      body: {
+        EmailAddress: email,
+      },
+    })
     return data
   }
   deleteSubscriber = async (listId: string, email: string) => {
